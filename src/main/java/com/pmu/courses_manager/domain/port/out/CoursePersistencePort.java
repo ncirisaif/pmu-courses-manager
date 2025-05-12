@@ -17,11 +17,6 @@ public interface CoursePersistencePort {
     Course save(Course course);
 
     /**
-     * Supprime une course
-     */
-    void delete(CourseId courseId);
-
-    /**
      * Charge une course par son identifiant
      */
     Optional<Course> findById(CourseId courseId);

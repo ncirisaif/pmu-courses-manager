@@ -1,15 +1,12 @@
 package com.pmu.courses_manager.it;
 
 import com.pmu.courses_manager.application.api.dto.PartantDto;
-import com.pmu.courses_manager.application.api.request.CreateCourseRequest;
 import com.pmu.courses_manager.application.api.request.AddPartantRequest;
+import com.pmu.courses_manager.application.api.request.CreateCourseRequest;
 import com.pmu.courses_manager.application.api.response.CreateCourseResponse;
 import com.pmu.courses_manager.application.exception.ErrorResponse;
 import com.pmu.courses_manager.conf.TestcontainersConfiguration;
-import com.pmu.courses_manager.domain.model.CourseId;
 import org.junit.jupiter.api.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
@@ -36,12 +33,10 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @Import(TestcontainersConfiguration.class)
 @ActiveProfiles("test")
 public class CourseResourcesIntegrationTest {
-    private static final CourseId ID_VALIDE = new CourseId(1L);
     private static final String NOM_VALIDE = "Course de Test";
     private static final LocalDate DATE_VALIDE = LocalDate.of(2025, 5, 5);
     private static final Integer NUMERO_VALIDE = 1;
     private static final List<String> PARTANTS_VALIDES = List.of("Cheval 1", "Cheval 2", "Cheval 3");
-    private static final Logger log = LoggerFactory.getLogger(String.class);
 
     @Autowired
     private TestRestTemplate restTemplate;

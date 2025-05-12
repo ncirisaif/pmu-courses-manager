@@ -6,7 +6,6 @@ import com.pmu.courses_manager.application.exception.CourseInexistanteException;
 import com.pmu.courses_manager.domain.model.Course;
 import com.pmu.courses_manager.domain.model.CourseId;
 import com.pmu.courses_manager.domain.model.Partant;
-import com.pmu.courses_manager.domain.model.PartantId;
 import com.pmu.courses_manager.domain.port.in.CourseManagementUseCase;
 import com.pmu.courses_manager.domain.port.out.CoursePersistencePort;
 import com.pmu.courses_manager.domain.port.out.OutboxEventPersistencePort;

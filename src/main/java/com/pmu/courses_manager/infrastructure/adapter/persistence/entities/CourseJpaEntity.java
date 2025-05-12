@@ -37,10 +37,4 @@ public class CourseJpaEntity {
     @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
     private Set<PartantJpaEntity> partants = new HashSet<>();
-
-
-    public void addParticipant(PartantJpaEntity participant) {
-        partants.add(participant);
-        participant.setCourse(this);
-    }
 }

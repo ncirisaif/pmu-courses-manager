@@ -4,7 +4,6 @@ import com.pmu.courses_manager.application.exception.CourseExisteDejaException;
 import com.pmu.courses_manager.application.exception.CourseInexistanteException;
 import com.pmu.courses_manager.domain.model.Course;
 import com.pmu.courses_manager.domain.model.CourseId;
-import com.pmu.courses_manager.domain.port.out.CourseEventPort;
 import com.pmu.courses_manager.domain.port.out.CoursePersistencePort;
 import com.pmu.courses_manager.domain.port.out.OutboxEventPersistencePort;
 import com.pmu.courses_manager.domain.port.out.PartantPersistencePort;
@@ -32,9 +31,6 @@ public class CourseServiceTest {
 
     @Mock
     private CoursePersistencePort coursePersistencePort;
-
-    @Mock
-    private CourseEventPort courseEventPort;
 
     @Mock
     private OutboxEventPersistencePort outboxEventPersistencePort;
@@ -82,9 +78,7 @@ public class CourseServiceTest {
         void shouldRejectCourseWithExistingDateAndNumero() {
             when(coursePersistencePort.existsByDateAndNumero(DATE_VALIDE, NUMERO_VALIDE)).thenReturn(true);
 
-            assertThrows(CourseExisteDejaException.class, () -> {
-                courseService.createCourse(NOM_VALIDE, DATE_VALIDE, NUMERO_VALIDE, PARTANTS_VALIDES);
-            });
+            assertThrows(CourseExisteDejaException.class, () -> courseService.createCourse(NOM_VALIDE, DATE_VALIDE, NUMERO_VALIDE, PARTANTS_VALIDES));
 
             verify(coursePersistencePort).existsByDateAndNumero(DATE_VALIDE, NUMERO_VALIDE);
             verify(coursePersistencePort, never()).save(any());
@@ -98,9 +92,7 @@ public class CourseServiceTest {
 
             when(coursePersistencePort.existsByDateAndNumero(DATE_VALIDE, NUMERO_VALIDE)).thenReturn(false);
 
-            assertThrows(IllegalArgumentException.class, () -> {
-                courseService.createCourse(NOM_VALIDE, DATE_VALIDE, NUMERO_VALIDE, partantsInvalides);
-            });
+            assertThrows(IllegalArgumentException.class, () -> courseService.createCourse(NOM_VALIDE, DATE_VALIDE, NUMERO_VALIDE, partantsInvalides));
 
             verify(coursePersistencePort).existsByDateAndNumero(DATE_VALIDE, NUMERO_VALIDE);
             verify(coursePersistencePort, never()).save(any());
@@ -132,9 +124,7 @@ public class CourseServiceTest {
             CourseId courseId = new CourseId(999L);
             when(coursePersistencePort.findById(courseId)).thenReturn(Optional.empty());
 
-            assertThrows(CourseInexistanteException.class, () -> {
-                courseService.getCourseById(courseId);
-            });
+            assertThrows(CourseInexistanteException.class, () -> courseService.getCourseById(courseId));
         }
     }
 }

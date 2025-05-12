@@ -5,7 +5,6 @@ import com.pmu.courses_manager.application.api.response.CreateCourseResponse;
 import com.pmu.courses_manager.domain.model.Course;
 import com.pmu.courses_manager.domain.model.CourseId;
 import com.pmu.courses_manager.domain.model.Partant;
-import org.mapstruct.Builder;
 import org.mapstruct.Mapper;
 
 import java.util.List;

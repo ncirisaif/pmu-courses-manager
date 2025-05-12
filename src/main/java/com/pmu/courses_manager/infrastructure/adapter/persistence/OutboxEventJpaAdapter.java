@@ -6,22 +6,20 @@ import com.pmu.courses_manager.domain.model.Course;
 import com.pmu.courses_manager.domain.model.CourseId;
 import com.pmu.courses_manager.domain.model.Partant;
 import com.pmu.courses_manager.domain.port.out.OutboxEventPersistencePort;
-import com.pmu.courses_manager.infrastructure.adapter.messaging.PartantAddedEvent;
+import com.pmu.courses_manager.infrastructure.adapter.messaging.dto.PartantAddedEvent;
 import com.pmu.courses_manager.infrastructure.adapter.persistence.entities.OutboxEvent;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Repository
+@AllArgsConstructor
 public class OutboxEventJpaAdapter implements OutboxEventPersistencePort{
     private final OutboxJpaRepository outboxJpaRepository;
     private final ObjectMapper objectMapper;
 
-    public OutboxEventJpaAdapter(OutboxJpaRepository outboxJpaRepository, ObjectMapper objectMapper) {
-        this.outboxJpaRepository = outboxJpaRepository;
-        this.objectMapper = objectMapper;
-    }
     @Override
     public OutboxEvent saveAddedParticipantEvent(CourseId courseId, Partant participant) {
         PartantAddedEvent event = new PartantAddedEvent(

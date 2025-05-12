@@ -4,7 +4,6 @@ import com.pmu.courses_manager.domain.model.Partant;
 import com.pmu.courses_manager.domain.model.PartantId;
 import com.pmu.courses_manager.infrastructure.adapter.persistence.entities.CourseJpaEntity;
 import com.pmu.courses_manager.infrastructure.adapter.persistence.entities.PartantJpaEntity;
-import org.mapstruct.Builder;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")

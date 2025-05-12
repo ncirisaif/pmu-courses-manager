@@ -33,11 +33,6 @@ public class CourseJpaAdapter implements CoursePersistencePort {
     }
 
     @Override
-    public void delete(CourseId courseId) {
-        courseRepository.deleteById(courseId.getValue());
-    }
-
-    @Override
     public Optional<Course> findById(CourseId courseId) {
         return courseRepository.findByIdWithParticipants(courseId.getValue())
                 .map(courseMapper::toDomain);
